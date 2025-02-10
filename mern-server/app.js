@@ -6,6 +6,10 @@ const cors = require('cors');
 
 const app = express();
 
+//Initilization DB Connection
+
+const db = require('./db');
+
 app.use(bodyParser.json());
 
 const port = process.env.port || 5000 ;
