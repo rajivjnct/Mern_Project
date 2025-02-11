@@ -46,4 +46,21 @@ router.get('/singleuser/:userid', async(req, res) => {
     }
 })
 
+// Update CALL Single User - http://localhost:5000/api/user/updateuser/userid
+router.put('/updateuser/:userid', async(req, res)=>{
+    const uid = req.params.userid;
+    try {
+        const users = await User.findByIdAndUpdate(
+            uid,
+            req.body, // Change whole Data
+            //Change only Specific data {$set: req.body},
+            {$set: req.body},
+            {new: true}
+        )
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({'Error': error})
+    }
+})
+
 module.exports = router;
