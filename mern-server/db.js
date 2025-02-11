@@ -1,6 +1,10 @@
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/blog-details');
+const dburi = process.env.DB_URI;
+
+mongoose.connect(`${dburi}/blog-details`);
 
 //Checking connection 
 mongoose.connection.on('connected', ()=>{
