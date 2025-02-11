@@ -63,4 +63,15 @@ router.put('/updateuser/:userid', async(req, res)=>{
     }
 })
 
+// Delete CALL Single User - http://localhost:5000/api/user/deleteuser/userid
+router.delete('/deleteuser/:userid', async(req,res) => {
+    const uid = req.params.userid;
+    try {
+        const users = await User.findByIdAndDelete(uid);
+        res.status(200).json({'mesg': 'User has deleted successfully', 'sts': '1'})
+    } catch (error) {
+        res.status(500).json({'Error': error});
+    }
+})
+
 module.exports = router;
